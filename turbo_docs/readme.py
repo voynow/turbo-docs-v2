@@ -5,7 +5,7 @@ from turbo_docs.constants import CODE_EXTENSIONS
 from turbo_docs.llm import count_tokens, get_completion_stream
 
 
-def get_files() -> Dict[Path, str]:
+def get_files(max_lines: int = 1000) -> Dict[Path, str]:
     """
     Recursively list all files in the current directory
 
@@ -13,8 +13,10 @@ def get_files() -> Dict[Path, str]:
     - Skip files that have a suffix that is not in CODE_EXTENSIONS
     - Skip files that are not files (e.g. directories)
     - Skip files that are named README.md (this will contaminate our generation)
+    - Skip files that have more than max_lines lines
 
-    :return: List of files
+    :param max_lines: Maximum number of lines allowed in a file
+    :return: Dictionary of Path to file content
     """
     files = {}
     for file in Path(".").glob("**/*"):
@@ -26,6 +28,11 @@ def get_files() -> Dict[Path, str]:
             continue
         if file.name.lower() == "readme.md":
             continue
+
+        with open(file, "rb") as f:
+            if f.read().count(b"\n") > max_lines:
+                continue
+
         files[file] = file.read_text()
 
     return files
