@@ -1,6 +1,6 @@
 [project]
 name = "turbo-docs"
-version = "2.0.3"
+version = "2.0.4"
 description = "Default template for PDM package"
 dependencies = [
     "tiktoken>=0.9.0",
@@ -33,3 +33,8 @@ distribution = true
 [tool.pdm.version]
 source = "file"
 path = "pyproject.toml"
+
+# git add .
+# git commit -m "bump version to 2.0.4"
+# git tag v2.0.4                            
+# git push origin main v2.0.4

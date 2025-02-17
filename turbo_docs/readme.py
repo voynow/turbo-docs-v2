@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Dict
 
-from turbo_docs.constants import CODE_EXTENSIONS
+from turbo_docs.constants import CODE_EXTENSIONS, IGNORE_FOLDERS
 from turbo_docs.llm import count_tokens, get_completion_stream
 
 
@@ -14,6 +14,7 @@ def get_files(max_lines: int = 1000) -> Dict[Path, str]:
     - Skip files that are not files (e.g. directories)
     - Skip files that are named README.md (this will contaminate our generation)
     - Skip files that have more than max_lines lines
+    - Skip files that cannot be read as text
 
     :param max_lines: Maximum number of lines allowed in a file
     :return: Dictionary of Path to file content
@@ -24,16 +25,22 @@ def get_files(max_lines: int = 1000) -> Dict[Path, str]:
             continue
         if file.suffix not in CODE_EXTENSIONS:
             continue
+        if any(part in IGNORE_FOLDERS for part in file.parts):
+            continue
         if not file.is_file():
             continue
         if file.name.lower() == "readme.md":
             continue
 
-        with open(file, "rb") as f:
-            if f.read().count(b"\n") > max_lines:
-                continue
+        try:
+            with open(file, "rb") as f:
+                if f.read().count(b"\n") > max_lines:
+                    continue
+            files[file] = file.read_text(encoding="utf-8")
 
-        files[file] = file.read_text()
+        except (UnicodeDecodeError, OSError) as e:
+            print(f"Skipping {file} because {e}")
+            continue
 
     return files
 
@@ -75,11 +82,11 @@ async def generate() -> None:
     num_tokens = count_tokens(repo_str)
 
     print(f"Generating README.md (ingesting {num_tokens} tokens)")
-    readme = await generate_readme(repo_str)
+    # readme = await generate_readme(repo_str)
 
     print("Saving README.md")
     with open("README.md", "w") as f:
-        f.write(readme)
+        f.write(repo_str)
 
 
 if __name__ == "__main__":

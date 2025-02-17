@@ -91,3 +91,19 @@ CODE_EXTENSIONS = {
     ".fs",
     ".fsx",
 }
+
+
+IGNORE_FOLDERS = [
+    "node_modules",
+    "dist",
+    "build",
+    "public",
+    "static",
+    "templates",
+    "vendor",
+    "venv",
+    "env",
+    "cache",
+    "tmp",
+    "temp",
+]
