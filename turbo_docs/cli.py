@@ -1,12 +1,20 @@
-"""Command line interface for turbo-docs."""
+import argparse
+import asyncio
 
-from typing import NoReturn
+from turbo_docs import readme
 
 
-def main() -> NoReturn:
+def main() -> None:
     """Entry point for the turbo-docs CLI."""
-    print("YO YO YO!!!!!!")
-    raise SystemExit(0)
+    parser = argparse.ArgumentParser(description="Generate documentation for your project")
+    parser.add_argument("--readme", action="store_true", help="Generate README.md file")
+
+    args = parser.parse_args()
+
+    if args.readme:
+        asyncio.run(readme.generate())
+    else:
+        print("No command specified. Use --help for usage information.")
 
 
 if __name__ == "__main__":
