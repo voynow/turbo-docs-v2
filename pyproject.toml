@@ -1,8 +1,13 @@
 [project]
 name = "turbo-docs"
-version = "2.0.0"
+version = "2.0.1"
 description = "Default template for PDM package"
-dependencies = ["tiktoken>=0.9.0", "openai>=1.63.2", "pydantic>=2.10.6", "python-dotenv>=1.0.1"]
+dependencies = [
+    "tiktoken>=0.9.0",
+    "openai>=1.63.2",
+    "pydantic>=2.10.6",
+    "python-dotenv>=1.0.1",
+]
 requires-python = ">=3.11"
 readme = "README.md"
 [[project.authors]]

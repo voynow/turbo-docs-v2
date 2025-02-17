@@ -13,7 +13,9 @@ jobs:
       - uses: pdm-project/setup-pdm@v3
         with:
           python-version: '3.8'
-      - name: Publish
+      - name: Build and Publish
         env:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: pdm publish --no-build 
+        run: |
+          pdm build
+          pdm publish 
