@@ -5,7 +5,7 @@ Welcome to Turbo Docs, a tool designed to effortlessly generate documentation fo
 ## Project Overview
 
 **Name:** Turbo Docs  
-**Version:** 2.0.0  
+**Version:** 2.0.1 
 **Description:** Default template for PDM package  
 **License:** MIT  
 **Author:** Voynow, [voynow99@gmail.com](mailto:voynow99@gmail.com)
@@ -26,7 +26,7 @@ The project uses PDM as a package manager and build tool.
 Ensure you have Python 3.11+ installed. You can install Turbo Docs and its dependencies using PDM:
 
 ```bash
-pdm install
+pip install turbo-docs
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ pdm install
 Turbo Docs provides a CLI to generate documentation. To generate a `README.md` file, run:
 
 ```bash
-pdm run turbo-docs --readme
+turbo-docs --readme
 ```
 
 The CLI will parse your project files and create a comprehensive `README.md` for your project.
