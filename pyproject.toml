@@ -1,0 +1,27 @@
+[project]
+name = "turbo-docs"
+version = "2.0.0"
+description = "Default template for PDM package"
+dependencies = []
+requires-python = ">=3.11"
+readme = "README.md"
+[[project.authors]]
+name = "voynow"
+email = "voynow99@gmail.com"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project.license]
+text = "MIT"
+
+[project.scripts]
+turbo-docs = "turbo_docs.cli:main"
+
+[tool.ruff]
+line-length = 120
+
+[tool.pdm]
+distribution = true
+version = { source = "file", path = "pyproject.toml" }
