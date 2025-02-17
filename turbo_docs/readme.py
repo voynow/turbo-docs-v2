@@ -82,11 +82,11 @@ async def generate() -> None:
     num_tokens = count_tokens(repo_str)
 
     print(f"Generating README.md (ingesting {num_tokens} tokens)")
-    # readme = await generate_readme(repo_str)
+    readme = await generate_readme(repo_str)
 
     print("Saving README.md")
     with open("README.md", "w") as f:
-        f.write(repo_str)
+        f.write(readme)
 
 
 if __name__ == "__main__":

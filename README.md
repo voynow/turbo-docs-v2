@@ -1,100 +1,99 @@
-# Turbo Docs
+# Turbo-Docs
 
-Welcome to Turbo Docs, a tool designed to effortlessly generate documentation for your Python projects. Leveraging AI capabilities, Turbo Docs can create detailed `README.md` files by analyzing your code base.
+Turbo-Docs is a versatile tool designed to simplify documentation generation for your Python projects. It leverages OpenAI's GPT models to create insightful and comprehensive README files directly from the repository structure and source code.
 
-## Project Overview
+## Features
 
-**Name:** Turbo Docs  
-**Version:** 2.0.4 
-**Description:** Default template for PDM package  
-**License:** MIT  
-**Author:** Voynow, [voynow99@gmail.com](mailto:voynow99@gmail.com)
+- **Automatic README Generation:** Turbo-Docs auto-generates README files using repository content and metadata.
+- **Flexible Token Counting:** Uses `tiktoken` to handle tokenization, compatible with various model sizes and types.
+- **PDM Build System Compatibility:** Integrates with PDM for Python dependency management.
+- **Runs with Python 3.11 or higher:** Ensures compatibility with latest Python features and security upgrades.
 
-## Requirements
+## Installation
 
-Turbo Docs requires Python 3.11 or higher and the following Python packages:
+Install Turbo-Docs using your package manager with the following dependencies:
+
+```shell
+pip install tiktoken openai pydantic python-dotenv
+```
+
+Ensure your environment is using Python 3.11 or higher.
+
+## Usage
+
+Turbo-Docs provides a command-line interface (CLI) to generate documentation effortlessly.
+
+### Command-Line Interface
+
+Generate a README by executing:
+
+```shell
+turbo-docs --readme
+```
+
+## Configuration
+
+### Environment Variables
+
+Turbo-Docs requires `OPENAI_API_KEY` to be set in your environment to access OpenAI services.
+
+```shell
+export OPENAI_API_KEY="your-openai-api-key"
+```
+
+### Dependencies
+
+Ensure the following dependencies are set in your `pyproject.toml` file:
 
 - `tiktoken>=0.9.0`
 - `openai>=1.63.2`
 - `pydantic>=2.10.6`
 - `python-dotenv>=1.0.1`
 
-The project uses PDM as a package manager and build tool.
-
-## Installation
-
-Ensure you have Python 3.11+ installed. You can install Turbo Docs and its dependencies using PDM:
-
-```bash
-pip install turbo-docs
-```
-
-## Usage
-
-Turbo Docs provides a CLI to generate documentation. To generate a `README.md` file, run:
-
-```bash
-turbo-docs --readme
-```
-
-The CLI will parse your project files and create a comprehensive `README.md` for your project.
-
-## How It Works
-
-The tool scans through your project files, determines the content based on predefined code extensions, and generates descriptive documentation using OpenAI's API. It utilizes:
-
-- An LLM (Language Learning Model) for natural language processing tasks like generating documentation.
-- Token counting to manage API requests effectively.
-
 ## Development
 
-To contribute or modify Turbo Docs:
+### Setting Up
 
-1. Clone the repository.
-2. Ensure all development dependencies are installed using PDM.
-3. The following scripts and settings are available in the project:
+To set up the development environment, make sure to configure PDM for managing project dependencies:
 
-### Project Scripts
-
-- `turbo-docs`: Entry point for generating documentation through the command line interface.
-
-### Key Files and Functions
-
-- **`readme.py`**: Contains functions to list project files, convert them to strings, and generate a `README.md` file.
-- **`cli.py`**: CLI script for running the document generation process.
-- **`llm.py`**: Defines functions to interact with OpenAI's API for generating text completions.
-
-### Code Extensions Supported
-
-Turbo Docs processes files with a variety of extensions including, but not limited to:
-
-- Web (e.g. `.js`, `.html`, `.css`)
-- Backend (e.g. `.py`, `.java`)
-- Shell scripts (e.g. `.sh`, `.bat`)
-- Configuration files (e.g. `.json`, `.yaml`)
-- Templates (e.g. `.j2`, `.tpl`)
-- Documentation (e.g. `.md`, `.rst`)
-
-### Environment Variables
-
-Make sure you have an OpenAI API Key set in your environment:
-
+```shell
+pdm install
 ```
-OPENAI_API_KEY=<your_openai_api_key>
+
+### Running Locally
+
+Run the CLI or other scripts using:
+
+```shell
+python -m turbo_docs.cli
 ```
+
+## Project Structure
+
+- **turbo_docs/**: Main package directory containing modules and scripts.
+- **cli.py**: CLI entry point for the turbo-docs tool.
+- **llm.py**: Functions for interaction with language models.
+- **constants.py**: Holds configuration constants related to file extensions and directories.
+- **readme.py**: Script for gathering files and generating README content.
+- **pyproject.toml**: Project configuration file for dependencies, scripts, and PDM settings.
 
 ## Contributing
 
-Contributions to Turbo Docs are welcome! Please follow the standard Git workflow and submit a pull request. For significant changes, please discuss them with the repository owner first.
+Please see our contributing guide for details on submitting patches and pull requests.
 
 ## License
 
-Turbo Docs is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License.
 
-## Contact
+## Authors
 
-For issues, questions, or feature requests, please contact the author at [voynow99@gmail.com](mailto:voynow99@gmail.com).
+Created by Voynow (voynow99@gmail.com)
 
----
+## Acknowledgments
 
-Harness the power of AI to streamline your documentation process with Turbo Docs!
+- Thanks to OpenAI for providing the GPT models to power the documentation generation.
+- Inspiration drawn from modern documentation tools and best practices in software development.
+
+## Adjustments and Improvements
+
+For any feature requests or bug fixes, feel free to open an issue or submit a PR to the repository. Your feedback is valuable in making Turbo-Docs even better!
