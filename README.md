@@ -5,7 +5,7 @@ Welcome to Turbo Docs, a tool designed to effortlessly generate documentation fo
 ## Project Overview
 
 **Name:** Turbo Docs  
-**Version:** 2.0.2 
+**Version:** 2.0.3 
 **Description:** Default template for PDM package  
 **License:** MIT  
 **Author:** Voynow, [voynow99@gmail.com](mailto:voynow99@gmail.com)
